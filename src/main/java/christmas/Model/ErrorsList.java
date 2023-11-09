@@ -8,6 +8,12 @@ public enum ErrorsList {
 
     private final String message;
 
+    ErrorsList(String message) {
+        this.message = message;
+    }
 
+    public String getMessage () {
+        return message;
+    }
 
 }
