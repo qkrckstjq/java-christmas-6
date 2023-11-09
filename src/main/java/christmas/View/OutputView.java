@@ -13,7 +13,7 @@ public class OutputView {
         System.out.println(content);
     }
 
-    public static void printOrders (String orders, String money) {
+    public static void printOrders (String orders, int money) {
         System.out.println(orders+" "+money+"개");
     }
 

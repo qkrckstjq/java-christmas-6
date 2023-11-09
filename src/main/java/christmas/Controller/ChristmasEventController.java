@@ -1,9 +1,12 @@
 package christmas.Controller;
 
 import christmas.EnumPackage.EachPriceList;
+import christmas.EnumPackage.PrintContentTitleList;
 import christmas.Model.*;
 import christmas.View.OutputView;
 import christmas.View.InputView;
+
+import java.util.HashMap;
 
 public class ChristmasEventController {
     private final OrderResultList orderList = new OrderResultList();
@@ -56,7 +59,11 @@ public class ChristmasEventController {
     }
 
     private void printOrderList () {
-
+        OutputView.printContent(PrintContentTitleList.ORDER_MENU.getMessage());
+        HashMap<String, Integer> temp = orderList.getOrderDetail();
+        for(String key : temp.keySet()) {
+            OutputView.printOrders(key, temp.get(key));
+        }
     }
 
 

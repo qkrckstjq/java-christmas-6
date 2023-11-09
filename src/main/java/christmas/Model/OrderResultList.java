@@ -37,6 +37,7 @@ public class OrderResultList {
     public HashMap<String, Integer> getOrderDetail () {
         return this.orderDetail;
     }
+
     public void updateOrdersNumber (boolean isInit, int number) {
         if(isInit) {
             this.ordersNumber = number;
