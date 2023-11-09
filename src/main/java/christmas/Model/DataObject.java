@@ -18,11 +18,6 @@ public class DataObject {
         menu.put(menuName.getCategory(), menu.get(menuName.getCategory())+number);
     }
 
-    public void print () {
-        for (Map.Entry<String, Integer> entry : menu.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
-        }
-    }
 
     public int getDessertNumber () {
         return menu.get("디저트");

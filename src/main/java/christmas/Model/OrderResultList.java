@@ -9,10 +9,10 @@ import java.util.Map;
 import java.util.HashMap;
 
 public class OrderResultList {
-    private final int WEEKDAY_START = 3;
     private final int SPECIAL_SALE_PRICE = 1000;
     private final int WEEK_SALE_PRICE = 2023;
     private final int PRESENT_PRICE_CUTLINE = 120000;
+    private final int SALE_CUTLINE = 10000;
     private int orderDate;
     private int ordersNumber = 0;
     private int beforeSalePrice = 0;
@@ -74,6 +74,11 @@ public class OrderResultList {
     public void initMenu () {
         orderMenu.initMenu();
     }
+
+//    public boolean isOrderable () {
+//
+//    }
+
     public void updateMenu (String menu, int number) {
         orderMenu.updateMenu(menu, number);
     }
@@ -87,39 +92,49 @@ public class OrderResultList {
     }
 
     public void updateChristmasSale () {
-        if(orderDate >= 1 && orderDate <= 25) {
-            int salePrice = 1000 + (orderDate-1)*100;
-            saleDetail.put(SaleVariable.CHRISTMAS_SALE.getMessage(), salePrice*-1);
+        if(beforeSalePrice >= SALE_CUTLINE) {
+            if(orderDate >= 1 && orderDate <= 25) {
+                int salePrice = 1000 + (orderDate-1)*100;
+                saleDetail.put(SaleVariable.CHRISTMAS_SALE.getMessage(), salePrice*-1);
+            }
         }
     }
 
     public void updateWeekSale () {
-        int lastDate = orderDate % 7;
-        int dessertNumber = orderMenu.getDessertNumber();
-        int MainNumber = orderMenu.getMainNumber();
-        if((lastDate == 1 || lastDate == 2) && dessertNumber != 0) {
-            saleDetail.put(SaleVariable.WEEKEND_SALE.getMessage(), WEEK_SALE_PRICE*dessertNumber*-1);
-        } else if (MainNumber != 0) {
-            saleDetail.put(SaleVariable.WEEKDAY_SALE.getMessage(), WEEK_SALE_PRICE*MainNumber*-1);
+        if(beforeSalePrice >= SALE_CUTLINE) {
+            int lastDate = orderDate % 7;
+            int dessertNumber = orderMenu.getDessertNumber();
+            int MainNumber = orderMenu.getMainNumber();
+            if((lastDate == 1 || lastDate == 2) && dessertNumber != 0) {
+                saleDetail.put(SaleVariable.WEEKEND_SALE.getMessage(), WEEK_SALE_PRICE*dessertNumber*-1);
+            } else if (MainNumber != 0) {
+                saleDetail.put(SaleVariable.WEEKDAY_SALE.getMessage(), WEEK_SALE_PRICE*MainNumber*-1);
+            }
         }
     }
 
     public void updateSpecialDateSale () {
-        if(SpecialDate.isContain(orderDate)) {
-            saleDetail.put(SaleVariable.SPECIAL_SALE.getMessage(), SPECIAL_SALE_PRICE*-1);
+        if(beforeSalePrice >= SALE_CUTLINE) {
+            if(SpecialDate.isContain(orderDate)) {
+                saleDetail.put(SaleVariable.SPECIAL_SALE.getMessage(), SPECIAL_SALE_PRICE*-1);
+            }
         }
     }
 
     public void updatePresentSale () {
-        if(beforeSalePrice >= PRESENT_PRICE_CUTLINE) {
-            saleDetail.put(SaleVariable.PRESENT_SALE.getMessage(), EachPriceList.샴페인.getPrice()*-1);
+        if(beforeSalePrice >= SALE_CUTLINE) {
+            if(beforeSalePrice >= PRESENT_PRICE_CUTLINE) {
+                saleDetail.put(SaleVariable.PRESENT_SALE.getMessage(), EachPriceList.샴페인.getPrice()*-1);
+            }
         }
     }
 
     public void calculateAfterSalePrice () {
         this.afterSalePrice = beforeSalePrice;
         for(String key : saleDetail.keySet()) {
-            afterSalePrice+=saleDetail.get(key);
+            if(key != "샴페인") {
+                afterSalePrice+=saleDetail.get(key);
+            }
             totalSalePrice+=saleDetail.get(key);
         }
     }

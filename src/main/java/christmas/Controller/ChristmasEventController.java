@@ -12,18 +12,22 @@ import java.io.PipedReader;
 import java.util.HashMap;
 
 public class ChristmasEventController {
-    private final OrderResultList orderList = new OrderResultList();
+    private OrderResultList orderList = new OrderResultList();
     private final BusinessLogics BusinessLogics = new BusinessLogics();
     public void run () {
         inputDate();
         inputMenus();
         updateSaleDetail();
+        updateCalculateSale();
 
         OutputView.printPreviewMessage(orderList.getOrderDate());
         printOrderList();
         printBeforeSalePrice();
         printPresetMenu();
         printSaleDetails();
+        printTotalSalePrice();
+        printAfterSalePrice();
+        printEventBadge();
     }
 
     private void inputDate () {
@@ -43,7 +47,7 @@ public class ChristmasEventController {
     private void inputMenus () {
         while(true) {
             try {
-                orderList.initMenu();
+                orderList = new OrderResultList();
                 String[] splitedMenus = BusinessLogics.splitString(InputView.printInputMenus());
                 for(int i = 0; i < splitedMenus.length; i++) {
                     String[] splitedNamePrice = BusinessLogics.splitMiddleBar(splitedMenus[i]);
@@ -73,6 +77,10 @@ public class ChristmasEventController {
         orderList.updatePresentSale();
     }
 
+    private void updateCalculateSale () {
+        orderList.calculateAfterSalePrice();
+    }
+
     private void printOrderList () {
         OutputView.printContent(PrintContentTitleList.ORDER_MENU.getMessage());
         HashMap<String, Integer> temp = orderList.getOrderDetail();
@@ -92,6 +100,8 @@ public class ChristmasEventController {
         OutputView.printContent(PrintContentTitleList.PRESENTATION_MENU.getMessage());
         if(orderList.isPresentSale()) {
             OutputView.printOrders("샴페인",1);
+        } else {
+            OutputView.printNone();
         }
         OutputView.printLineChange();
     }
@@ -119,6 +129,6 @@ public class ChristmasEventController {
 
     private void printEventBadge () {
         OutputView.printContent(PrintContentTitleList.EVENT_BADGE.getMessage());
-        OutputView.printContent(EventBadgeList.getBadge(orderList.getTotalSalePrice()));
+        OutputView.printContent(EventBadgeList.getBadge(orderList.getTotalSalePrice()*-1));
     }
 }
