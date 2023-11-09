@@ -1,9 +1,15 @@
 package christmas.Model;
 
+import christmas.Model.DataObject;
+
+import java.util.HashMap;
+
 public class OrderResultList {
     private int orderDate;
     private int ordersNumber = 0;
     private int beforeSalePrice = 0;
+
+    private DataObject orderMenu = new DataObject();
 
     public void updateOrderDate (int num) {
         this.orderDate = num;
@@ -31,10 +37,15 @@ public class OrderResultList {
         return this.beforeSalePrice;
     }
 
+    public void initMenu () {
+        orderMenu.initMenu();
+    }
+    public void updateMenu (String menu, int number) {
+        orderMenu.updateMenu(menu, number);
+    }
 
-
-
-
-
+    public void printOrderList () {
+        orderMenu.print();
+    }
 
 }
