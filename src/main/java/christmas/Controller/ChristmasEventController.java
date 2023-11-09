@@ -12,6 +12,7 @@ public class ChristmasEventController {
     }
 
     private void validateDate () {
+        OutputView.printGreeting();
         while(true) {
             try {
                 int date = ValidationInput.isInteger(InputView.printInputDate());
