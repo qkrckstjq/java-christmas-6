@@ -10,9 +10,9 @@ public class ValidationInput {
             return date;
         } catch (IllegalArgumentException e) {
             if(type == "date") {
-                throw new IllegalArgumentException(ErrorsList.INVALID_DATETYPE.getMessage());
+                throw new IllegalArgumentException(ErrorsList.INVALID_DATE.getMessage());
             }
-            throw new IllegalArgumentException(ErrorsList.INVALID_INPUTNUMBERTYPE.getMessage());
+            throw new IllegalArgumentException(ErrorsList.INVALID_ORDER.getMessage());
         }
     }
 
@@ -24,7 +24,7 @@ public class ValidationInput {
 
     public static void isInvalidMenuInput (String[] NamePriceArr) {
         if(NamePriceArr.length != 2) {
-            throw new IllegalArgumentException(ErrorsList.INVALID_INPUTTYPE.getMessage());
+            throw new IllegalArgumentException(ErrorsList.INVALID_ORDER.getMessage());
         }
     }
 
@@ -32,13 +32,13 @@ public class ValidationInput {
         try {
             EachPriceList list = EachPriceList.valueOf(menu);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(ErrorsList.INVALID_MENU.getMessage());
+            throw new IllegalArgumentException(ErrorsList.INVALID_ORDER.getMessage());
         }
     }
 
     public static void isInvalidRange (int number) {
         if(number < 0 || number > 20) {
-            throw new IllegalArgumentException(ErrorsList.INVALID_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorsList.INVALID_ORDER.getMessage());
         }
     }
 

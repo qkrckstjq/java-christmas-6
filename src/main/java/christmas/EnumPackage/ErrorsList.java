@@ -9,7 +9,7 @@ public enum ErrorsList {
 
     INVALID_INPUTTYPE("[ERROR] 메뉴의 입력 방식이 잘못 되었습니다. 다시 입력해 주세요."),
 
-    INVALID_ORDER("[ERROR] 음료만 주문 할 수 없습니다. 다시 입력해 주세요.");
+    INVALID_ORDER("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
 
     private final String message;
 
