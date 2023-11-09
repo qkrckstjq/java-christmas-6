@@ -29,4 +29,8 @@ public class OutputView {
         System.out.println("없음");
     }
 
+    public static void printLineChange () {
+        System.out.println();
+    }
+
 }
