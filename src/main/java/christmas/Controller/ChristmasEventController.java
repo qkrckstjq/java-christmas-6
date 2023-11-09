@@ -16,7 +16,7 @@ public class ChristmasEventController {
     private final BusinessLogics BusinessLogics = new BusinessLogics();
     public void run () {
         inputDate();
-        inputMenus();
+        inputMenu();
         updateSaleDetail();
         updateCalculateSale();
 
@@ -44,10 +44,10 @@ public class ChristmasEventController {
         }
     }
 
-    private void inputMenus () {
+    private void inputMenu () {
         while(true) {
             try {
-                orderList = new OrderResultList();
+                orderList.initOrderMenu();
                 String[] splitedMenus = BusinessLogics.splitString(InputView.printInputMenus());
                 for(int i = 0; i < splitedMenus.length; i++) {
                     String[] splitedNamePrice = BusinessLogics.splitMiddleBar(splitedMenus[i]);
@@ -66,6 +66,7 @@ public class ChristmasEventController {
                 ValidationInput.isInvalidRange(orderList.getOrdersNumber());
                 break;
             } catch (IllegalArgumentException e) {
+                orderList = new OrderResultList();
                 OutputView.printContent(e.getMessage());
             }
         }
@@ -87,9 +88,10 @@ public class ChristmasEventController {
         HashMap<String, Integer> temp = orderList.getOrderDetail();
         if(temp.isEmpty()) {
             OutputView.printNone();
-        }
-        for(String key : temp.keySet()) {
-            OutputView.printOrders(key, temp.get(key));
+        } else {
+            for(String key : temp.keySet()) {
+                OutputView.printOrders(key, temp.get(key));
+            }
         }
         OutputView.printLineChange();
     }
@@ -115,9 +117,10 @@ public class ChristmasEventController {
         HashMap<String, Integer> temp = orderList.getSaleDetail();
         if(temp.isEmpty()) {
             OutputView.printNone();
-        }
-        for(String key : temp.keySet()) {
-            OutputView.printSale(key, BusinessLogics.decimalFormatting(temp.get(key)));
+        } else {
+            for(String key : temp.keySet()) {
+                OutputView.printSale(key, BusinessLogics.decimalFormatting(temp.get(key)));
+            }
         }
         OutputView.printLineChange();
     }

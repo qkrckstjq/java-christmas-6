@@ -20,7 +20,7 @@ public class DataObject {
 
     public boolean isOrderable () {
         for(String key : menu.keySet()) {
-            if(key != "음료") {
+            if(!key.equals("음료")) {
                 return true;
             }
         }

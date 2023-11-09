@@ -23,6 +23,10 @@ public class OrderResultList {
     private HashMap<String, Integer> orderDetail = new HashMap<>();
     private HashMap<String, Integer> saleDetail = new HashMap<>();
 
+    public void initOrderMenu () {
+        this.orderMenu.initMenu();
+    }
+
     public void updateOrderDate (int num) {
         this.orderDate = num;
     }
@@ -68,11 +72,6 @@ public class OrderResultList {
 
     public void updateBeforeSalePrice (int number) {
         this.beforeSalePrice += number;
-    }
-
-
-    public void initMenu () {
-        orderMenu.initMenu();
     }
 
     public boolean isOrderable () {
@@ -132,12 +131,11 @@ public class OrderResultList {
     public void calculateAfterSalePrice () {
         this.afterSalePrice = beforeSalePrice;
         for(String key : saleDetail.keySet()) {
-            if(key != "샴페인") {
+            if(!key.equals("증정 이벤트")) {
                 afterSalePrice+=saleDetail.get(key);
             }
             totalSalePrice+=saleDetail.get(key);
         }
     }
-
 
 }
