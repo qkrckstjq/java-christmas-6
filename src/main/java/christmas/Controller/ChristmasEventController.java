@@ -10,12 +10,14 @@ import java.util.HashMap;
 
 public class ChristmasEventController {
     private final OrderResultList orderList = new OrderResultList();
+    private final BusinessLogics BusinessLogics = new BusinessLogics();
     public void run () {
         inputDate();
         inputMenus();
 
         OutputView.printPreviewMessage(orderList.getOrderDate());
-
+        printOrderList();
+        printBeforeSalePrice();
     }
 
     private void inputDate () {
@@ -65,6 +67,15 @@ public class ChristmasEventController {
             OutputView.printOrders(key, temp.get(key));
         }
     }
+
+    private void printBeforeSalePrice () {
+        OutputView.printContent(PrintContentTitleList.BEFORE_SALE.getMessage());
+        OutputView.printMoney(BusinessLogics.decimalFormatting(orderList.getBeforeSalePrice()));
+    }
+
+
+
+
 
 
 }

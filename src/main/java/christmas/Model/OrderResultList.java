@@ -38,6 +38,14 @@ public class OrderResultList {
         return this.orderDetail;
     }
 
+    public int getBeforeSalePrice () {
+        return this.beforeSalePrice;
+    }
+
+    public int getTotalSalePrice () {
+        return totalSalePrice;
+    }
+
     public void updateOrdersNumber (boolean isInit, int number) {
         if(isInit) {
             this.ordersNumber = number;
@@ -54,9 +62,6 @@ public class OrderResultList {
         this.beforeSalePrice += number;
     }
 
-    public int getBeforeSalePrice () {
-        return this.beforeSalePrice;
-    }
 
     public void initMenu () {
         orderMenu.initMenu();
@@ -111,9 +116,7 @@ public class OrderResultList {
         }
     }
 
-    public int getTotalSalePrice () {
-        return totalSalePrice;
-    }
+
 
 
 

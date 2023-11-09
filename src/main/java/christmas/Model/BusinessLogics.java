@@ -1,15 +1,23 @@
 package christmas.Model;
 
+import java.text.DecimalFormat;
+
 public class BusinessLogics {
-    public static String[] splitString (String input) {
+    DecimalFormat decimalFormat = new DecimalFormat("#,###");
+    public String[] splitString (String input) {
         String terminatedWhiteSpace = input.trim();
         String[] splitedStr = terminatedWhiteSpace.split(",");
         return splitedStr;
     }
 
-    public static String[] splitMiddleBar (String str) {
+    public String[] splitMiddleBar (String str) {
         String[] splitedStr = str.split("-");
         return splitedStr;
+    }
+
+    public String decimalFormatting (int number) {
+        String formattedNumber = decimalFormat.format(number);
+        return formattedNumber;
     }
 
 }
