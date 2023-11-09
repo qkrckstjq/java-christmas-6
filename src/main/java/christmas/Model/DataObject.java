@@ -18,6 +18,14 @@ public class DataObject {
         menu.put(menuName.getCategory(), menu.get(menuName.getCategory())+number);
     }
 
+    public boolean isOrderable () {
+        for(String key : menu.keySet()) {
+            if(key != "음료") {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public int getDessertNumber () {
         return menu.get("디저트");

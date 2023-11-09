@@ -62,6 +62,7 @@ public class ChristmasEventController {
                     orderList.updateMenu(menu,orderNumber);
                     orderList.updateOrderDetail(menu, orderNumber);
                 }
+                ValidationInput.isOrderable(orderList.isOrderable());
                 ValidationInput.isInvalidRange(orderList.getOrdersNumber());
                 break;
             } catch (IllegalArgumentException e) {
@@ -84,6 +85,9 @@ public class ChristmasEventController {
     private void printOrderList () {
         OutputView.printContent(PrintContentTitleList.ORDER_MENU.getMessage());
         HashMap<String, Integer> temp = orderList.getOrderDetail();
+        if(temp.isEmpty()) {
+            OutputView.printNone();
+        }
         for(String key : temp.keySet()) {
             OutputView.printOrders(key, temp.get(key));
         }
@@ -109,6 +113,9 @@ public class ChristmasEventController {
     private void printSaleDetails () {
         OutputView.printContent(PrintContentTitleList.BENEFIT.getMessage());
         HashMap<String, Integer> temp = orderList.getSaleDetail();
+        if(temp.isEmpty()) {
+            OutputView.printNone();
+        }
         for(String key : temp.keySet()) {
             OutputView.printSale(key, BusinessLogics.decimalFormatting(temp.get(key)));
         }

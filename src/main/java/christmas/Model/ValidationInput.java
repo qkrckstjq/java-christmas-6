@@ -42,5 +42,9 @@ public class ValidationInput {
         }
     }
 
-
+    public static void isOrderable (boolean bool) {
+        if(!bool) {
+            throw new IllegalArgumentException(ErrorsList.INVALID_ORDER.getMessage());
+        }
+    }
 }

@@ -75,9 +75,9 @@ public class OrderResultList {
         orderMenu.initMenu();
     }
 
-//    public boolean isOrderable () {
-//
-//    }
+    public boolean isOrderable () {
+        return orderMenu.isOrderable();
+    }
 
     public void updateMenu (String menu, int number) {
         orderMenu.updateMenu(menu, number);
