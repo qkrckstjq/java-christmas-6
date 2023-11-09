@@ -1,10 +1,6 @@
 package christmas.View;
 
 public class OutputView {
-    public static void printContentTitle (String contentTitle) {
-        System.out.println("<"+contentTitle+">");
-    }
-
     public static void printMoney (String money) {
         System.out.println(money+"원");
     }
@@ -20,6 +16,4 @@ public class OutputView {
     public static void printSale (String saleName, String money) {
         System.out.println(saleName+": "+money+"원");
     }
-
-
 }
