@@ -6,13 +6,13 @@ public class ValidationInput {
             int date = Integer.parseInt(num);
             return date;
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorsList.INVALID_DATETYPE.getMessage());
         }
     }
 
     public static void isInvalidDate (int num) throws IllegalArgumentException {
         if(num < 1 || num > 31) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorsList.INVALID_DATE.getMessage());
         }
     }
 }
