@@ -20,4 +20,13 @@ public class OutputView {
     public static void printSale (String saleName, String money) {
         System.out.println(saleName+": "+money+"원");
     }
+
+    public static void printPreviewMessage (int number) {
+        System.out.println("12월 "+number+"일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
+    }
+
+    public static void printNone () {
+        System.out.println("없음");
+    }
+
 }

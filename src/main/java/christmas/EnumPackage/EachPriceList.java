@@ -1,4 +1,4 @@
-package christmas.Model;
+package christmas.EnumPackage;
 
 public enum EachPriceList {
     양송이수프(6000),

@@ -1,4 +1,4 @@
-package christmas.Model;
+package christmas.EnumPackage;
 
 public enum PrintContentTitleList {
     ORDER_MENU("<주문 메뉴>"),

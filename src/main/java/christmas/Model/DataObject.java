@@ -1,5 +1,7 @@
 package christmas.Model;
 
+import christmas.EnumPackage.MenuItem;
+
 import java.util.HashMap;
 import java.util.Map;
 public class DataObject {
@@ -20,5 +22,13 @@ public class DataObject {
         for (Map.Entry<String, Integer> entry : menu.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
         }
+    }
+
+    public int getDessertNumber () {
+        return menu.get("디저트");
+    }
+
+    public int getMainNumber () {
+        return menu.get("메인");
     }
 }

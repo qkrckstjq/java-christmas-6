@@ -1,5 +1,8 @@
 package christmas.Model;
 
+import christmas.EnumPackage.EachPriceList;
+import christmas.EnumPackage.ErrorsList;
+
 public class ValidationInput {
     public static int isInteger (String num, String type) throws IllegalArgumentException {
         try {

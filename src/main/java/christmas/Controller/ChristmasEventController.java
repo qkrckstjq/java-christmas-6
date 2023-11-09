@@ -1,5 +1,6 @@
 package christmas.Controller;
 
+import christmas.EnumPackage.EachPriceList;
 import christmas.Model.*;
 import christmas.View.OutputView;
 import christmas.View.InputView;
@@ -9,6 +10,9 @@ public class ChristmasEventController {
     public void run () {
         inputDate();
         inputMenus();
+
+        OutputView.printPreviewMessage(orderList.getOrderDate());
+
     }
 
     private void inputDate () {
@@ -41,15 +45,18 @@ public class ChristmasEventController {
                     orderList.updateBeforeSalePrice(false, price.getPrice());
                     orderList.updateOrdersNumber(false,orderNumber);
                     orderList.updateMenu(menu,orderNumber);
+                    orderList.updateOrderDetail(menu, orderNumber);
                 }
                 ValidationInput.isInvalidRange(orderList.getOrdersNumber());
                 break;
             } catch (IllegalArgumentException e) {
-                orderList.updateOrdersNumber(true,0);
-                orderList.updateBeforeSalePrice(true,0);
                 OutputView.printContent(e.getMessage());
             }
         }
+    }
+
+    private void printOrderList () {
+
     }
 
 

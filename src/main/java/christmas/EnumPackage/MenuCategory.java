@@ -1,4 +1,4 @@
-package christmas.Model;
+package christmas.EnumPackage;
 
 public enum MenuCategory {
     에피타이저,

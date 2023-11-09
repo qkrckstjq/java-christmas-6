@@ -1,4 +1,4 @@
-package christmas.Model;
+package christmas.EnumPackage;
 
 import java.awt.*;
 
