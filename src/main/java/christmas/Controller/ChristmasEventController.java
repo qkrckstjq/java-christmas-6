@@ -6,9 +6,6 @@ import christmas.EnumPackage.PrintContentTitleList;
 import christmas.Model.*;
 import christmas.View.OutputView;
 import christmas.View.InputView;
-import org.mockito.internal.matchers.Or;
-
-import java.io.PipedReader;
 import java.util.HashMap;
 
 public class ChristmasEventController {
@@ -87,12 +84,11 @@ public class ChristmasEventController {
 
     private void printOrderList () {
         OutputView.printContent(PrintContentTitleList.ORDER_MENU.getMessage());
-        HashMap<String, Integer> temp = orderList.getOrderDetail();
-        if(temp.isEmpty()) {
+        if(orderList.getOrderDetail().isEmpty()) {
             OutputView.printNone();
         } else {
-            for(String key : temp.keySet()) {
-                OutputView.printOrders(key, temp.get(key));
+            for(String key : orderList.getOrderDetail().keySet()) {
+                OutputView.printOrders(key, orderList.getOrderDetail().get(key));
             }
         }
         OutputView.printLineChange();
@@ -116,12 +112,11 @@ public class ChristmasEventController {
 
     private void printSaleDetails () {
         OutputView.printContent(PrintContentTitleList.BENEFIT.getMessage());
-        HashMap<String, Integer> temp = orderList.getSaleDetail();
-        if(temp.isEmpty()) {
+        if(orderList.getSaleDetail().isEmpty()) {
             OutputView.printNone();
         } else {
-            for(String key : temp.keySet()) {
-                OutputView.printSale(key, BusinessLogics.decimalFormatting(temp.get(key)));
+            for(String key : orderList.getSaleDetail().keySet()) {
+                OutputView.printSale(key, BusinessLogics.decimalFormatting(orderList.getSaleDetail().get(key)));
             }
         }
         OutputView.printLineChange();
