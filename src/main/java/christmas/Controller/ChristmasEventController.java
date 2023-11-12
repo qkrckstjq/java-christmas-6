@@ -19,7 +19,6 @@ public class ChristmasEventController {
         inputMenu();
         updateSaleDetail();
         updateCalculateSale();
-
         OutputView.printPreviewMessage(orderList.getOrderDate());
         printOrderList();
         printBeforeSalePrice();
@@ -48,28 +47,31 @@ public class ChristmasEventController {
         while(true) {
             try {
                 orderList.initOrderMenu();
-                String[] splitedMenus = BusinessLogics.splitString(InputView.printInputMenus());
-                for(int i = 0; i < splitedMenus.length; i++) {
-                    String[] splitedNamePrice = BusinessLogics.splitMiddleBar(splitedMenus[i]);
-                    ValidationInput.isInvalidMenuInput(splitedNamePrice);
-                    String menu = splitedNamePrice[0];
-                    int orderNumber = ValidationInput.isInteger(splitedNamePrice[1],"menu");
-                    ValidationInput.isInvalidMenu(menu);
-                    ValidationInput.isInvalidRange(orderNumber);
-                    EachPriceList price = EachPriceList.valueOf(menu);
-                    orderList.updateBeforeSalePrice(price.getPrice()*orderNumber);
-                    orderList.updateOrdersNumber(orderNumber);
-                    orderList.updateMenu(menu,orderNumber);
-                    orderList.updateOrderDetail(menu, orderNumber);
-                }
-                ValidationInput.isOrderable(orderList.isOrderable());
-                ValidationInput.isInvalidRange(orderList.getOrdersNumber());
+                inputMenuValidate(orderList);
                 break;
             } catch (IllegalArgumentException e) {
                 orderList = new OrderResultList();
                 OutputView.printContent(e.getMessage());
             }
         }
+    }
+    private void inputMenuValidate (OrderResultList orderList) {
+        String[] splitedMenus = BusinessLogics.splitString(InputView.printInputMenus());
+        for(String menuString : splitedMenus) {
+            String[] splitedNamePrice = BusinessLogics.splitMiddleBar(menuString);
+            ValidationInput.isInvalidMenuInput(splitedNamePrice);
+            String menu = splitedNamePrice[0];
+            int orderNumber = ValidationInput.isInteger(splitedNamePrice[1],"menu");
+            ValidationInput.isInvalidMenu(menu);
+            ValidationInput.isInvalidRange(orderNumber);
+            EachPriceList price = EachPriceList.valueOf(menu);
+            orderList.updateBeforeSalePrice(price.getPrice()*orderNumber);
+            orderList.updateOrdersNumber(orderNumber);
+            orderList.updateMenu(menu,orderNumber);
+            orderList.updateOrderDetail(menu, orderNumber);
+        }
+        ValidationInput.isOrderable(orderList.isOrderable());
+        ValidationInput.isInvalidRange(orderList.getOrdersNumber());
     }
 
     private void updateSaleDetail () {

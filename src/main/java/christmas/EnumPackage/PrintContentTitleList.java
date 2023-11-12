@@ -8,13 +8,6 @@ public enum PrintContentTitleList {
     TOTAL_BENEFIT("<총혜택 금액>"),
     AFTER_SALE("<할인 후 예상 결제 금액>"),
     EVENT_BADGE("<12월 이벤트 배지>");
-//"<주문 메뉴>",
-//        "<할인 전 총주문 금액>",
-//        "<증정 메뉴>",
-//        "<혜택 내역>",
-//        "<총혜택 금액>",
-//        "<할인 후 예상 결제 금액>",
-//        "<12월 이벤트 배지>"
 
     private final String message;
     PrintContentTitleList(String message) {

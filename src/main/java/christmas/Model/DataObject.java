@@ -20,7 +20,7 @@ public class DataObject {
 
     public boolean isOrderable () {
         for(String key : menu.keySet()) {
-            if(!key.equals("음료")) {
+            if(!key.equals(menuType[3])) {
                 return true;
             }
         }
@@ -28,10 +28,10 @@ public class DataObject {
     }
 
     public int getDessertNumber () {
-        return menu.get("디저트");
+        return menu.get(menuType[2]);
     }
 
     public int getMainNumber () {
-        return menu.get("메인");
+        return menu.get(menuType[1]);
     }
 }
